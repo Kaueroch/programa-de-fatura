@@ -1,0 +1,42 @@
+<!-- src/main/resources/templates/index.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faturas</title>
+</head>
+<body>
+
+<h1>Faturas</h1>
+
+<form th:action="@{/adicionar}" method="post">
+    <label for="data">Data:</label>
+    <input type="date" id="data" name="data" required>
+    
+    <label for="descricao">Descrição:</label>
+    <input type="text" id="descricao" name="descricao" required>
+    
+    <label for="valor">Valor:</label>
+    <input type="number" id="valor" name="valor" step="0.01" required>
+
+    <button type="submit">Adicionar</button>
+</form>
+
+<table>
+    <tr>
+        <th>Data</th>
+        <th>Descrição</th>
+        <th>Valor</th>
+    </tr>
+
+    <!-- Exemplo de dados -->
+    <tr th:each="fatura : ${faturas}">
+        <td th:text="${fatura.data}">2022-01-01</td>
+        <td th:text="${fatura.descricao}">Exemplo</td>
+        <td th:text="${fatura.valor}">100.00</td>
+    </tr>
+</table>
+
+</body>
+</html>
